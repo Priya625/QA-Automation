@@ -15,10 +15,6 @@ initialize_database()
 # -----------------------------
 st.markdown("""
 <style>
-h1 {
-    color: #0F4C81;
-    text-align: center;
-}
 
 /* Custom styling for full-width theme buttons */
 .stButton>button {
