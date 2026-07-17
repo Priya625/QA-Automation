@@ -11,35 +11,28 @@ st.set_page_config(
 initialize_database()
 
 # -----------------------------
-# Custom CSS
+# Custom CSS (Keeping your button styles)
 # -----------------------------
-
 st.markdown("""
 <style>
-.main{
-    background-color:#F6F8FC;
+h1 {
+    color: #0F4C81;
+    text-align: center;
 }
-h1{
-    color:#0F4C81;
-    text-align:center;
+
+/* Custom styling for full-width theme buttons */
+.stButton>button {
+    width: 100%;
+    height: 60px;
+    font-size: 20px;
+    border-radius: 10px;
+    background: #0F4C81;
+    color: white;
 }
-.card{
-    padding:25px;
-    border-radius:15px;
-    background:white;
-    box-shadow:0px 2px 12px rgba(0,0,0,0.08);
-}
-.stButton>button{
-    width:100%;
-    height:60px;
-    font-size:20px;
-    border-radius:10px;
-    background:#0F4C81;
-    color:white;
-}
-.stButton>button:hover{
-    background:#1E6BB8;
-    color:white;
+
+.stButton>button:hover {
+    background: #1E6BB8;
+    color: white;
 }
 </style>
 """, unsafe_allow_html=True)
@@ -51,23 +44,19 @@ st.markdown("---")
 col1, col2 = st.columns(2)
 
 with col1:
-    st.markdown("<div class='card'>", unsafe_allow_html=True)
-    st.subheader("🆕 New Study")
-    st.write("Create a brand new project.")
-    
-    if st.button("Create New Study"):
-        # Fixed to point to 1_Home.py where your form is located
-        st.switch_page("pages/1_Home.py")
+    # Using a native Streamlit container to act as a clean card wrapper
+    with st.container(border=True):
+        st.subheader("🆕 New Study")
+        st.write("Create a brand new project.")
         
-    st.markdown("</div>", unsafe_allow_html=True)
+        if st.button("Create New Study", key="new_study_btn"):
+            st.switch_page("pages/1_Home.py")
 
 with col2:
-    st.markdown("<div class='card'>", unsafe_allow_html=True)
-    st.subheader("📂 Existing Study")
-    st.write("Open an existing project.")
-    
-    if st.button("Open Existing Study"):
-        # Fixed to match 3_Existing_Study.py in your sidebar
-        st.switch_page("pages/3_Existing_Study.py")
+    # Using a native Streamlit container to act as a clean card wrapper
+    with st.container(border=True):
+        st.subheader("📂 Existing Study")
+        st.write("Open an existing project.")
         
-    st.markdown("</div>", unsafe_allow_html=True)
+        if st.button("Open Existing Study", key="exist_study_btn"):
+            st.switch_page("pages/3_Existing_Study.py")
